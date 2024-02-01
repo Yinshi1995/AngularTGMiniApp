@@ -1,27 +1,34 @@
-# TelegramBot
+# Angular Telegram Gym Authorization MiniApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
+The **Angular Telegram Gym Authorization MiniApp** is a powerful application designed for streamlined user authentication and comprehensive gym progress tracking. By combining Angular and Telegram, this mini-app provides a user-friendly solution for gym enthusiasts.
 
-## Development server
+## Features:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### QR Code Authorization
+- **Effortless Access:** Users can easily authorize access to the gym using Telegram-generated QR codes.
+- **Secure Authentication:** QR codes ensure a secure and swift authentication process, enhancing user convenience.
 
-## Code scaffolding
+### Gym Progress Tracking
+- **Personalized Dashboards:** Users have access to personalized dashboards, offering insights into individual gym progress.
+- **Statistics:** Track and visualize workout statistics, including completed workouts, time spent, and achievements, promoting motivation.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Subscription Management
+- **Subscription Tracking:** Easily monitor gym subscription details, including renewal dates and plan information.
+- **Renewal Reminders:** Receive timely reminders for subscription renewals, ensuring uninterrupted access to gym facilities.
 
-## Build
+## Technologies Used:
+- **Angular:** The robust Angular framework ensures a responsive and dynamic user interface.
+- **Telegram API:** Seamless integration with Telegram for QR code generation and authentication.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## How to Use:
+1. **Authorization:**
+   - Open the Telegram app and scan the provided QR code at the gym entrance.
+   - Instantly gain access to the gym facilities.
 
-## Running unit tests
+2. **Gym Progress:**
+   - Explore your personalized dashboard to view workout statistics.
+   - Track your progress over time, stay motivated, and set new fitness goals.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. **Subscription Management:**
+   - Easily manage and track your gym subscription details.
+   - Receive timely reminders for subscription renewals.
