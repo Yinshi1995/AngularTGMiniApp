@@ -2,36 +2,23 @@ import { Component, OnInit } from '@angular/core';
 
 import { TelegramService } from '../telegram/telegram.service';
 import { UserComponent } from '../user/user.component';
+import { QRError } from '../qr-code/qr-error.type';
 
 @Component({
   selector: 'app-qr-scanner',
   standalone: true,
   imports: [UserComponent],
   styleUrl: './qr-scanner.component.scss',
-  template: `
-    <button (click)="showQRScanner()">Click</button>
-    @if (!!scannedQR) {
-      <app-user [userId]="scannedQR"></app-user>
-    }
-  `,
+  templateUrl: './qr-scanner.component.html',
 })
 export class QrScannerComponent implements OnInit {
-  get scannedQR(): number | null {
-    const qr = this.telegramService.qRcode;
-    return qr && !isNaN(Number(qr)) ? Number(qr) : null;
+  get scannedQR(): number | QRError | null {
+    return this.telegramService.userId;
   }
 
-  constructor(
-    private readonly telegramService: TelegramService,
-  ) { }
-    
-  ngOnInit(): void {
-    // this.showQRScanner();
-  }
+  constructor(private readonly telegramService: TelegramService) {}
 
-  showQRScanner() {
-    this.telegramService.showQRScanner(
-      'Scan the QR Code',
-    );
+  async ngOnInit() {
+    await this.telegramService.showScannerButton();
   }
 }

@@ -12,7 +12,7 @@ import { QrCodeService } from './qr-code.service';
   template: `
     @if (userId) {
       <div class="container qrcode-container">
-          <ngx-qrcode-styling [data]="userId" [config]="config" />
+        <ngx-qrcode-styling [data]="userId" [config]="config" />
       </div>
     } @else {
       <div class="card">
@@ -23,8 +23,8 @@ import { QrCodeService } from './qr-code.service';
   `,
 })
 export class QrCodeComponent implements OnInit {
-  userId: string | null = null; 
-  
+  userId: string | null = null;
+
   get config(): Options {
     return this.qrcodeService.config;
   }
@@ -32,12 +32,10 @@ export class QrCodeComponent implements OnInit {
   constructor(
     private readonly queryParamsService: QueryParamService,
     private readonly qrcodeService: QrCodeService,
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     let queryId = this.queryParamsService.getQueryParam('user_id');
-    if (!!queryId) 
-      this.userId = this.qrcodeService.parseInteger(queryId);
+    if (!!queryId) this.userId = this.qrcodeService.parseInteger(queryId);
   }
-
 }

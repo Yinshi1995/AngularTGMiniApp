@@ -1,0 +1,22 @@
+@if (scannedQR == "incorrectInteger") {
+  <h1>Ошибка</h1>
+  <div class="card">
+    <p class="error-message">Полученое значение не является телеграм айди</p>
+  </div>
+} @else if (scannedQR == "stringNotNumber") {
+  <h1>Ошибка</h1>
+  <div class="card">
+    <p class="error-message">
+      Полученое значение является текстом. Вы сканируете что-то не то.
+    </p>
+  </div>
+} @else if (!!scannedQR) {
+  <app-user [userId]="scannedQR" />
+} @else {
+  <h2>Страница Администратора</h2>
+  <div class="card">
+    <div class="error-message">
+      Отсканируйте код на экране пользователя, чтобы получить доступ к аккаунту.
+    </div>
+  </div>
+}

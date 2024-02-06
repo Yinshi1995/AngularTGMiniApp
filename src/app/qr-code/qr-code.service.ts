@@ -4,7 +4,7 @@ import { Options } from 'ngx-qrcode-styling';
 import { TelegramService } from '../telegram/telegram.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QrCodeService {
   public config: Options = {
@@ -27,11 +27,9 @@ export class QrCodeService {
     },
   };
 
-  constructor(
-    private readonly telegramService: TelegramService,
-  ) { }
+  constructor(private readonly telegramService: TelegramService) {}
 
-  getConfig() { }
+  getConfig() {}
 
   parseInteger(query_id: string): string | null {
     let parsed_int = parseInt(query_id, 10);
