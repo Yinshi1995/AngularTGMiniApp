@@ -24,8 +24,6 @@ export class TelegramService {
       const numericValue = Number(this.UserId);
       if (!isNaN(numericValue)) {
         if (Number.isInteger(numericValue)) {
-          this.hideMainButton();
-          this.expandMiniApp();
           return numericValue;
         } else {
           return 'incorrectInteger';

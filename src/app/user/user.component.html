@@ -4,7 +4,7 @@
       <h2>User Profile</h2>
     </div>
     <div class="card-body">
-      <p><strong>Telegram ID:</strong> {{ user.telegram_id }}</p>
+      <p><strong>Telegram ID:</strong> {{ userId }}</p>
       <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
       @if (user.full_name) {
         <p><strong>Full Name:</strong> {{ user.full_name }}</p>
@@ -16,14 +16,26 @@
       @if (user.height) {
         <p><strong>Height:</strong> {{ user.height }} cm</p>
       }
-      <!-- @if(user.birth_date) {
-        <p><strong>Birth Date:</strong> {{ user.birth_date | date:'yyyy-MM-dd' }}</p>
-      } -->
-      @if (user.is_admin) {
-        <p><strong>Is Admin:</strong> {{ user.is_admin ? "Yes" : "No" }}</p>
+      @if (user.birth_date) {
+        <p>
+          <strong>Birth Date:</strong>
+          {{ user.birth_date | date: "yyyy-MM-dd" }}
+        </p>
       }
     </div>
+  } @else if (!user && !isLoading) {
+    <div>User isn't found</div>
   } @else {
     <div>Spinning</div>
   }
 </div>
+
+<button class="expand-button">Expand</button>
+
+<!-- <div class="subscriptions-card">
+  @if (user?.Subscriptions) {
+    @for (subscription of user?.Subscriptions; track subscription.status) {
+      <app-subscription [subscription]="subscription" />
+    }
+  }
+</div> -->

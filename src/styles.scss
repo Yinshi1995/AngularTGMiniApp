@@ -110,3 +110,28 @@
     text-align: center;
   }
 }
+
+.expand-button {
+  background-color: var(--tg-theme-button-color); /* Use Telegram button color */
+  color: var(--tg-theme-button-text-color); /* Use Telegram button text color */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px; /* Adjust font size as needed */
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.expand-button::after {
+  content: '\25BE'; /* Unicode character for down arrow */
+  position: absolute;
+  right: 10px; /* Adjust the distance of the arrow from the right */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.expand-button:hover {
+  // background-color: darken(var(--tg-theme-button-color), 10%); /* Darken the button color on hover */
+}
