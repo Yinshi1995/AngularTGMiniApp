@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { UserService } from './user.service';
 import { User } from './user.interface';
 import { SubscriptionComponent } from '../subscription/subscription.component';
+import { CommonComponentsModule } from '../common-components/common-components.module';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule, SubscriptionComponent],
+  imports: [CommonModule, SubscriptionComponent, CommonComponentsModule],
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
 })
@@ -57,7 +58,6 @@ export class UserComponent implements OnInit {
         )
         .subscribe(({ data }: any) => {
           if (data && data.user) {
-            console.log(data);
             this.user = data.user;
           } else {
             this.error = 'User not found';

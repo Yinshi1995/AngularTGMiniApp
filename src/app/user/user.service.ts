@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
+import GET_USER from './graphql/get-user';
 import { Subscription } from '../subscription/subscriptin.interface';
 
 @Injectable({
@@ -11,42 +12,26 @@ export class UserService {
   getUserById(id: number) {
     let variables = { id };
     return this.apollo.watchQuery({
-      query: gql`
-        query getUser($id: Int!) {
-          user(telegram_id: $id) {
-            username
-            full_name
-            phone_number
-            weight
-            height
-            birth_date
-            Subscriptions {
-              status
-              start_date
-              end_date
-            }
-          }
-        }
-      `,
+      query: GET_USER,
       variables,
     }).valueChanges;
   }
 
   separateSubscriptions(subscriptions: Subscription[]) {
     let active: Subscription | null = null;
-    const inactiveSubscriptions: Subscription[] = [];
+    const inactive: Subscription[] = [];
 
     for (let subscription of subscriptions) {
       if (subscription.status == 'active') {
         active = subscription;
       } else {
-        inactiveSubscriptions.push(subscription);
+        inactive.push(subscription);
       }
     }
 
     return {
       active,
-      inactiveSubscriptions,
+      inactive,
     };
   }
 }

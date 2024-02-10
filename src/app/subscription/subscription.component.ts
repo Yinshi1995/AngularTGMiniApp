@@ -23,4 +23,5 @@ import { CommonModule } from '@angular/common';
 })
 export class SubscriptionComponent {
   @Input() subscription: Subscription | null = null;
+  @Input() active: boolean = false;
 }

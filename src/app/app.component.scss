@@ -1,18 +1,32 @@
-a {
-  text-decoration: none;
-  color: var(--tg-theme-link-color); // Use the TG theme link color variable
-  font-weight: bold;
-  padding: 10px;
-  border: 1px solid var(--tg-theme-link-color); // Use the TG theme link color variable
-  border-radius: 5px;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
+@import "../variables.scss";
 
-  &:hover {
-    background-color: var(
-      --tg-theme-link-color
-    ); // Use the TG theme link color variable
-    color: #ffffff; // You can use a light color for better contrast on hover
+.main-content {
+  height: 100vh;
+  overflow-x: hidden;
+
+  display: flex;
+  justify-content: center;
+
+  h1,
+  h2 {
+    margin: 0 auto;
+    margin-bottom: 3vh;
+  }
+
+  a {
+    text-decoration: none;
+    color: $link_color;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid $link_color;
+    border-radius: 5px;
+    transition:
+      background-color 0.3s,
+      color 0.3s;
+
+    &:hover {
+      background-color: $link_color; 
+      color: #ffffff;
+    }
   }
 }

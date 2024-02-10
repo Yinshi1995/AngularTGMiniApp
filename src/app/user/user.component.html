@@ -1,14 +1,9 @@
-<div class="my-card">
+<tg-container>
   @if (user && userId) {
-    <div class="card-header">
-      <h2>User Profile</h2>
-    </div>
-    <div class="card-body">
+    <tg-card>
+      <h2>{{ user.full_name }}</h2>
       <p><strong>Telegram ID:</strong> {{ userId }}</p>
       <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-      @if (user.full_name) {
-        <p><strong>Full Name:</strong> {{ user.full_name }}</p>
-      }
       <p><strong>Username:</strong> {{ user.username }}</p>
       @if (user.weight) {
         <p><strong>Weight:</strong> {{ user.weight }} kg</p>
@@ -22,20 +17,23 @@
           {{ user.birth_date | date: "yyyy-MM-dd" }}
         </p>
       }
-    </div>
+    </tg-card>
+    <tg-button>lorem ipsum dolot</tg-button>
   } @else if (!user && !isLoading) {
-    <div>User isn't found</div>
+    <tg-card>
+      <h1>Ошибка</h1>
+      <p>К сожалению, пользователь с таким ID не был найдет.</p>
+    </tg-card>
   } @else {
-    <div>Spinning</div>
+    <div class="spinner-container">
+      <tg-spinner />
+    </div>
   }
-</div>
+</tg-container>
 
-<button class="expand-button">Expand</button>
-
-<!-- <div class="subscriptions-card">
-  @if (user?.Subscriptions) {
-    @for (subscription of user?.Subscriptions; track subscription.status) {
-      <app-subscription [subscription]="subscription" />
-    }
+@if (userSubscriptions) {
+  <app-subscription [active]="true" [subscription]="userSubscriptions.active" />
+  @for (inactive of userSubscriptions.inactive; track inactive) {
+    <app-subscription [active]="false" [subscription]="inactive" />
   }
-</div> -->
+}
