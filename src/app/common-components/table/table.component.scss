@@ -1,0 +1,60 @@
+@import "../../../variables.scss";
+
+// Mixin for table border-radius
+@mixin table-border-radius($radius) {
+  border-radius: $radius;
+}
+
+// Mixin for table box-shadow
+@mixin table-box-shadow($shadow) {
+  box-shadow: $shadow;
+}
+
+// Table styles
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: $bg_color;
+  border-collapse: collapse;
+  border-spacing: 0;
+  @include table-border-radius(4px);
+}
+
+// Table headings
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid $header_bg_color;
+  color: $section_header_text_color;
+}
+
+// Table cells
+.table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid $header_bg_color;
+  color: $text_color;
+}
+
+// Striped rows
+.table-striped {
+  tbody {
+    tr:nth-child(even) {
+      background-color: $secondary_bg_color;
+    }
+    tr:nth-child(odd) {
+      background-color: $bg_color;
+    }
+  }
+}
+
+// Responsive table
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  @include table-border-radius(4px);
+  @include table-box-shadow(0 0 6px rgba(0, 0, 0, 0.1));
+}

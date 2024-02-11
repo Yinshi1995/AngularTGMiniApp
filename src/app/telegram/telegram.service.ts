@@ -19,11 +19,13 @@ export class TelegramService {
     };
   }
 
-  get userId(): number | QRError | null {
+  getUserId(): number | QRError | null {
     if (this.UserId) {
       const numericValue = Number(this.UserId);
       if (!isNaN(numericValue)) {
         if (Number.isInteger(numericValue)) {
+          this.hideMainButton();
+          this.expandMiniApp();
           return numericValue;
         } else {
           return 'incorrectInteger';

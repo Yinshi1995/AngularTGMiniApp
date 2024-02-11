@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-
+import { ContainerComponent } from '../container/container.component';
 
 @Component({
   selector: 'tg-card',
   standalone: true,
-  imports: [],
+  imports: [ContainerComponent],
   styleUrl: './card.component.scss',
   template: `
-    <div class="card">
-      <div class="inner">
-        <ng-content />
+    <tg-container>
+      <div class="card">
+        <div class="inner">
+          <ng-content />
+        </div>
       </div>
-    </div>
+    </tg-container>
   `,
 })
-export class CardComponent { }
+export class CardComponent {}

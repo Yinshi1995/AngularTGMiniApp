@@ -18,6 +18,7 @@
   cursor: pointer;
   box-sizing: border-box;
   margin-bottom: 1rem;
+  user-select: none;
   &:hover {
     color: $button_text_color;
     border-color: $button_color;
@@ -29,6 +30,6 @@
     outline: 0;
   }
   &:active {
-    transform: scale(0.95); 
+    transform: scale(0.95);
   }
 }

@@ -18,6 +18,7 @@ import { CommonComponentsModule } from '../common-components/common-components.m
 export class UserComponent implements OnInit {
   @Input() userId: number | null = null;
   user: User | null = null;
+  flipped: boolean = false;
   isLoading: boolean = true;
   error: string | null = null;
 
@@ -26,11 +27,21 @@ export class UserComponent implements OnInit {
     private readonly route: ActivatedRoute,
   ) {}
 
+  get userJSON() {
+    if (this.user) return this.userService.passTableJSON(this.user);
+
+    return null;
+  }
+
   get userSubscriptions() {
     if (!!this.user && !!this.user.Subscriptions)
       return this.userService.separateSubscriptions(this.user.Subscriptions);
 
     return null;
+  }
+
+  flip() {
+    this.flipped = !this.flipped;
   }
 
   ngOnInit(): void {
