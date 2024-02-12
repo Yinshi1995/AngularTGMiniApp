@@ -1,0 +1,38 @@
+  @if (userSubscriptions) {
+    <h2>Активные абонименты</h2>
+    <tg-card>
+      @if (userSubscriptions && userSubscriptions.active) {
+        <app-subscription [subscription]="userSubscriptions.active" />
+      } @else {
+        <p>К сожалению, у этого пользователя нет активного абонимента.</p>
+      }
+    </tg-card>
+    @if (activeHidden) {
+      @if (
+        userSubscriptions &&
+        userSubscriptions.inactive &&
+        userSubscriptions.inactive.length > 0
+      ) {
+        <tg-container [@dropdownAnimation]>
+          <h3>Неактивные абонименты</h3>
+          @for (inactive of userSubscriptions.inactive; track inactive) {
+            <tg-card [active]="false">
+              <app-subscription [subscription]="inactive" />
+            </tg-card>
+          }
+        </tg-container>
+      } @else {
+        <tg-card [@dropdownAnimation]>
+          <p>История этого пользователя пуста.</p>
+        </tg-card>
+      }
+    } @else {
+      <tg-button (click)="showInactive()"
+        >Посмотреть неактивные абонименты</tg-button
+      >
+    }
+  } @else {
+    <div class="spinner-container">
+      <tg-spinner />
+    </div>
+  }

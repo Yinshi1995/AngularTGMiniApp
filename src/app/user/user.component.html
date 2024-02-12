@@ -1,45 +1,16 @@
-@if (user && userId) {
-  @if (!flipped) {
-    <tg-button (click)="flip()">Посмотреть абонимент</tg-button>
+  @if (user && userId) {
+    <tg-button (click)="goToSubs()">Посмотреть абонимент</tg-button>
     <tg-card>
       <h2>{{ user.full_name }}</h2>
-      <tg-table [user]="userJSON" />
+      <tg-table [json]="userJSON" />
+    </tg-card>
+  } @else if (!user && !isLoading) {
+    <tg-card>
+      <h1>Ошибка</h1>
+      <p>К сожалению, пользователь с таким ID не был найдет.</p>
     </tg-card>
   } @else {
-    <tg-button (click)="flip()">Посмотреть данные пользователя</tg-button>
-    <tg-card>
-      @if (userSubscriptions && userSubscriptions.active) {
-        <app-subscription
-          [active]="true"
-          [subscription]="userSubscriptions.active"
-        />
-      } @else {
-        <p>К сожалению, у этого пользователя нет активного абонимента.</p>
-      }
-    </tg-card>
-    @if (
-      userSubscriptions &&
-      userSubscriptions.inactive &&
-      userSubscriptions.inactive.length > 0
-    ) {
-      @for (inactive of userSubscriptions.inactive; track inactive) {
-        <tg-card>
-          <app-subscription [active]="false" [subscription]="inactive" />
-        </tg-card>
-      }
-    } @else {
-      <tg-card>
-        <p>История этого пользователя пуста.</p>
-      </tg-card>
-    }
+    <div class="spinner-container">
+      <tg-spinner />
+    </div>
   }
-} @else if (!user && !isLoading) {
-  <tg-card>
-    <h1>Ошибка</h1>
-    <p>К сожалению, пользователь с таким ID не был найдет.</p>
-  </tg-card>
-} @else {
-  <div class="spinner-container">
-    <tg-spinner />
-  </div>
-}

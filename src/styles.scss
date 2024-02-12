@@ -4,4 +4,19 @@
   font-family: $font-family;
   color: $text_color;
   background-color: $bg_color;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0 auto;
+    margin-bottom: 3vh;
+  }
+
+  h3,
+  h4,
+  h5 {
+    color: $hint_color;
+  }
 }

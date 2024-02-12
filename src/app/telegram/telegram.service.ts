@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 
 import { TelegramWebApp } from './interfaces';
 import { QRError } from '../qr-code/qr-error.type';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,10 @@ import { QRError } from '../qr-code/qr-error.type';
 export class TelegramService {
   private UserId: string | null = null;
   private tg: TelegramWebApp = this.document.defaultView.Telegram.WebApp;
-  constructor(@Inject(DOCUMENT) private readonly document: any) {}
+  constructor(
+    @Inject(DOCUMENT) private readonly document: any,
+    private readonly router: Router,
+  ) {}
 
   get colorQRParams() {
     return {
@@ -24,8 +28,6 @@ export class TelegramService {
       const numericValue = Number(this.UserId);
       if (!isNaN(numericValue)) {
         if (Number.isInteger(numericValue)) {
-          this.hideMainButton();
-          this.expandMiniApp();
           return numericValue;
         } else {
           return 'incorrectInteger';
@@ -47,6 +49,28 @@ export class TelegramService {
 
   hideMainButton(): void {
     this.tg.MainButton.hide();
+  }
+
+  async showBackToUserButton(userId: number): Promise<void> {
+    this.tg.BackButton.show();
+
+    await this.waitForBackButtonClick(userId);
+  }
+
+  hideBackButton(): void {
+    this.tg.BackButton.hide();
+  }
+
+  async waitForBackButtonClick(userId: number): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.tg.BackButton.onClick(() => {
+        this.router.navigate(['/user'], {
+          queryParams: { user_id: userId },
+        });
+        this.hideBackButton();
+        resolve();
+      });
+    });
   }
 
   async waitForQRScanner(): Promise<void> {
@@ -80,11 +104,11 @@ export class TelegramService {
     this.tg.closeScanQrPopup();
   }
 
-  private expandMiniApp(): void {
+  expandMiniApp(): void {
     this.tg.expand();
   }
 
-  private closeMiniApp(): void {
+  closeMiniApp(): void {
     this.tg.close();
   }
 }

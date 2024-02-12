@@ -9,4 +9,12 @@
   .inner {
     padding: 1rem;
   }
+
+  table {
+    color: inherit;
+  }
+}
+
+.inactive {
+  color: $hint_color;
 }

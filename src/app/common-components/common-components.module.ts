@@ -6,6 +6,7 @@ import { CardComponent } from './card/card.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ContainerComponent } from './container/container.component';
 import { TableComponent } from './table/table.component';
+import { HintComponent } from './hint/hint.component';
 
 const COMPONENTS = [
   CardComponent,
@@ -13,6 +14,7 @@ const COMPONENTS = [
   SpinnerComponent,
   ContainerComponent,
   TableComponent,
+  HintComponent,
 ];
 
 @NgModule({

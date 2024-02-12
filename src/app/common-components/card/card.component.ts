@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ContainerComponent } from '../container/container.component';
 
 @Component({
@@ -8,7 +8,7 @@ import { ContainerComponent } from '../container/container.component';
   styleUrl: './card.component.scss',
   template: `
     <tg-container>
-      <div class="card">
+      <div class="card" [class]="{ inactive: !active }">
         <div class="inner">
           <ng-content />
         </div>
@@ -16,4 +16,6 @@ import { ContainerComponent } from '../container/container.component';
     </tg-container>
   `,
 })
-export class CardComponent {}
+export class CardComponent {
+  @Input() active: boolean = true;
+}

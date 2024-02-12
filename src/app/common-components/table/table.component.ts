@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
-export class TableComponent implements OnInit {
-  @Input() user: any = null;
-  ngOnInit(): void {}
+export class TableComponent {
+  @Input() json: any = null;
 }

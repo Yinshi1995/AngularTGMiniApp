@@ -1,16 +1,13 @@
 @import "../../../variables.scss";
 
-// Mixin for table border-radius
 @mixin table-border-radius($radius) {
   border-radius: $radius;
 }
 
-// Mixin for table box-shadow
 @mixin table-box-shadow($shadow) {
   box-shadow: $shadow;
 }
 
-// Table styles
 .table {
   width: 100%;
   max-width: 100%;
@@ -21,23 +18,18 @@
   @include table-border-radius(4px);
 }
 
-// Table headings
 .table th {
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid $header_bg_color;
-  color: $section_header_text_color;
 }
 
-// Table cells
 .table td {
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid $header_bg_color;
-  color: $text_color;
 }
 
-// Striped rows
 .table-striped {
   tbody {
     tr:nth-child(even) {
@@ -49,7 +41,6 @@
   }
 }
 
-// Responsive table
 .table-responsive {
   display: block;
   width: 100%;

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
+import { map } from 'lodash';
+
 import GET_USER from './graphql/get-user';
-import { Subscription } from '../subscription/subscriptin.interface';
+
 import { User } from './user.interface';
-import { map, omit } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -20,13 +21,11 @@ export class UserService {
   }
 
   passTableJSON(user: User) {
-    let omited_user = omit(user, ['__typename', 'Subscriptions']);
-
     let translated_user: any = {
-      'Имя пользователя': `@${omited_user.username}`,
+      'Имя пользователя': `@${user.username}`,
       'Номер телефона': user.phone_number,
-      Вес: `${omited_user.weight} кг`,
-      Рост: `${omited_user.height} см`,
+      Вес: `${user.weight} кг`,
+      Рост: `${user.height} см`,
     };
 
     if (user.birth_date) {
@@ -37,23 +36,5 @@ export class UserService {
     }
 
     return map(translated_user, (value, key) => ({ label: key, value }));
-  }
-
-  separateSubscriptions(subscriptions: Subscription[]) {
-    let active: Subscription | null = null;
-    const inactive: Subscription[] = [];
-
-    for (let subscription of subscriptions) {
-      if (subscription.status == 'active') {
-        active = subscription;
-      } else {
-        inactive.push(subscription);
-      }
-    }
-
-    return {
-      active,
-      inactive,
-    };
   }
 }
